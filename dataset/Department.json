@@ -1,0 +1,33 @@
+{
+	"name": "Department",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HomeBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Department.csv",
+				"folderPath": "CSVSource",
+				"container": "adfdemo"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Dep",
+				"type": "String"
+			},
+			{
+				"name": "DepName",
+				"type": "String"
+			}
+		]
+	}
+}
