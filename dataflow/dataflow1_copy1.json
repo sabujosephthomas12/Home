@@ -1,5 +1,5 @@
 {
-	"name": "dataflow1",
+	"name": "dataflow1_copy1",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -22,10 +22,7 @@
 			"sinks": [],
 			"transformations": [
 				{
-					"name": "join1"
-				},
-				{
-					"name": "select1"
+					"name": "Exixit"
 				}
 			],
 			"scriptLines": [
@@ -44,18 +41,9 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> Department",
-				"Empoyee, Department join(Empoyee@Dep == Department@Dep,",
-				"     joinType:'inner',",
-				"     matchType:'exact',",
-				"     ignoreSpaces: false,",
-				"     broadcast: 'auto')~> join1",
-				"join1 select(mapColumn(",
-				"          empid,",
-				"          EmployeeName,",
-				"          DepName",
-				"     ),",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1"
+				"Empoyee, Department exists(Empoyee@Dep == Department@Dep,",
+				"     negate:false,",
+				"     broadcast: 'auto')~> Exixit"
 			]
 		}
 	}
