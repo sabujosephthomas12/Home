@@ -1,0 +1,26 @@
+{
+	"name": "AMCO",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AMCOSQL",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "PK_area_Id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "MatchCode",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "DimArea"
+		}
+	}
+}
