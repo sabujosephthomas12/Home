@@ -22,7 +22,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "SQLDestination",
+						"referenceName": "AzureSQL",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
@@ -78,6 +78,7 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
 				"     mapColumn(",
 				"          Empid = Employee_ID,",
 				"          Name = EmplyeeName,",
