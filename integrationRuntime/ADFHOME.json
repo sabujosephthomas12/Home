@@ -1,0 +1,12 @@
+{
+	"name": "ADFHOME",
+	"properties": {
+		"type": "SelfHosted",
+		"typeProperties": {
+			"linkedInfo": {
+				"resourceId": "/subscriptions/043dfc79-d0ed-4989-9b65-22a064a293af/resourcegroups/AzureDataFactoryTestEnv/providers/Microsoft.DataFactory/factories/ADFDemoSabu/integrationruntimes/IR-SELFHOSTED",
+				"authorizationType": "Rbac"
+			}
+		}
+	}
+}

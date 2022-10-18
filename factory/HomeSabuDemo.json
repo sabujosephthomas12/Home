@@ -1,0 +1,9 @@
+{
+	"name": "HomeSabuDemo",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "eea4cd56-fb29-4f4b-9475-9666529c214c",
+		"tenantId": "0b5f3ee3-bf5c-4a3d-aec1-a3e3b4011085"
+	}
+}
