@@ -1,0 +1,37 @@
+{
+	"name": "SalesErrorLog",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQLAZUREDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "SalesDate",
+				"type": "varchar"
+			},
+			{
+				"name": "Salesitem",
+				"type": "varchar"
+			},
+			{
+				"name": "Country",
+				"type": "varchar"
+			},
+			{
+				"name": "Quantity",
+				"type": "varchar"
+			},
+			{
+				"name": "Filename",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "SalesLog"
+		}
+	}
+}
