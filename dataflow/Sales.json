@@ -12,7 +12,22 @@
 					"name": "SalesIndia"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "SalesErrorLog",
+						"type": "DatasetReference"
+					},
+					"name": "SqlBadData"
+				},
+				{
+					"dataset": {
+						"referenceName": "SalesSQL",
+						"type": "DatasetReference"
+					},
+					"name": "GoodRecord"
+				}
+			],
 			"transformations": [
 				{
 					"name": "ConditionalSplitSales"
@@ -38,7 +53,56 @@
 				"     disjoint: false) ~> ConditionalSplitSales@(BadSales, GoodData)",
 				"ConditionalSplitSales@BadSales derive(FileName = 'Sales India.csv') ~> FileName",
 				"ConditionalSplitSales@GoodData derive(FileName = 'Sales India.csv',",
-				"          SalesDate = toDate(SalesDate, 'dd-MMM-yyyy')) ~> GoodFileName"
+				"          SalesDate = toDate(SalesDate, 'dd-MMM-yyyy'),",
+				"          Q = toInteger(Quantity)) ~> GoodFileName",
+				"FileName sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          SalesDate as string,",
+				"          Salesitem as string,",
+				"          Country as string,",
+				"          Quantity as string,",
+				"          Filename as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          SalesDate,",
+				"          Salesitem = SalesItem,",
+				"          Country,",
+				"          Quantity,",
+				"          Filename = FileName",
+				"     )) ~> SqlBadData",
+				"GoodFileName sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          SalesDate as timestamp,",
+				"          Salesitem as string,",
+				"          Country as string,",
+				"          Quantity as integer,",
+				"          Filename as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          SalesDate,",
+				"          Salesitem = SalesItem,",
+				"          Country,",
+				"          Quantity = Q,",
+				"          Filename = FileName",
+				"     )) ~> GoodRecord"
 			]
 		}
 	}
