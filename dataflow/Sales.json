@@ -16,6 +16,12 @@
 			"transformations": [
 				{
 					"name": "ConditionalSplitSales"
+				},
+				{
+					"name": "FileName"
+				},
+				{
+					"name": "GoodFileName"
 				}
 			],
 			"scriptLines": [
@@ -29,7 +35,10 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> SalesIndia",
 				"SalesIndia split(isNull( toDate(SalesDate, 'dd-MMM-yyyy')),",
-				"     disjoint: false) ~> ConditionalSplitSales@(BadSales, GoodData)"
+				"     disjoint: false) ~> ConditionalSplitSales@(BadSales, GoodData)",
+				"ConditionalSplitSales@BadSales derive(FileName = 'Sales India.csv') ~> FileName",
+				"ConditionalSplitSales@GoodData derive(FileName = 'Sales India.csv',",
+				"          SalesDate = toDate(SalesDate, 'dd-MMM-yyyy')) ~> GoodFileName"
 			]
 		}
 	}
