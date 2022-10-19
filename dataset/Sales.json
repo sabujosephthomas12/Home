@@ -1,0 +1,41 @@
+{
+	"name": "Sales",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HomeBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Sales India.csv",
+				"folderPath": "Sales India",
+				"container": "adfdemo"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "SalesDate",
+				"type": "String"
+			},
+			{
+				"name": "SalesItem",
+				"type": "String"
+			},
+			{
+				"name": "Country",
+				"type": "String"
+			},
+			{
+				"name": "Quantity",
+				"type": "String"
+			}
+		]
+	}
+}
