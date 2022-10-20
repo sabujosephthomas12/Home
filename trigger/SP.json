@@ -1,0 +1,25 @@
+{
+	"name": "SP",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "StoredProcedure",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Minute",
+				"interval": 15,
+				"startTime": "2022-10-20T10:50:00Z",
+				"endTime": "2022-10-21T00:50:00Z",
+				"timeZone": "UTC"
+			}
+		}
+	}
+}
