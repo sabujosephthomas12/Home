@@ -32,6 +32,9 @@
 				},
 				{
 					"name": "surrogateKey1"
+				},
+				{
+					"name": "derivedColumn2"
 				}
 			],
 			"scriptLines": [
@@ -61,7 +64,8 @@
 				"     broadcast: 'auto')~> join1",
 				"join1 keyGenerate(output(ID as long),",
 				"     startAt: 1L,",
-				"     stepValue: 1L) ~> surrogateKey1"
+				"     stepValue: 1L) ~> surrogateKey1",
+				"surrogateKey1 derive(Newid = toInteger(Max) + toInteger(ID)) ~> derivedColumn2"
 			]
 		}
 	}

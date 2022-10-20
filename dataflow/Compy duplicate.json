@@ -1,0 +1,54 @@
+{
+	"name": "Compy duplicate",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "FirstFile",
+						"type": "DatasetReference"
+					},
+					"name": "FirstFile"
+				},
+				{
+					"dataset": {
+						"referenceName": "SelcondFile",
+						"type": "DatasetReference"
+					},
+					"name": "SecondFile"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "union1"
+				},
+				{
+					"name": "DistincCount"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          empid as string,",
+				"          EmployeeName as string,",
+				"          Dep as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> FirstFile",
+				"source(output(",
+				"          empid as string,",
+				"          EmployeeName as string,",
+				"          Dep as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> SecondFile",
+				"FirstFile, SecondFile union(byName: true)~> union1",
+				"union1 aggregate(groupBy(empid),",
+				"     column1 = ERROR_FUNCTION('')) ~> DistincCount"
+			]
+		}
+	}
+}

@@ -1,0 +1,19 @@
+{
+	"name": "IncrementLoading",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"name": "EmployeeeSource"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(allowSchemaDrift: true,",
+				"     validateSchema: false) ~> EmployeeeSource"
+			]
+		}
+	}
+}
