@@ -1,0 +1,68 @@
+{
+	"name": "Uppand",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AllEmp",
+						"type": "DatasetReference"
+					},
+					"name": "Allemplo"
+				},
+				{
+					"dataset": {
+						"referenceName": "NormalEmployees",
+						"type": "DatasetReference"
+					},
+					"name": "NormalEmployee"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "aggregate1"
+				},
+				{
+					"name": "join1"
+				},
+				{
+					"name": "surrogateKey1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          empid as string,",
+				"          EmployeeName as string,",
+				"          Dep as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Allemplo",
+				"source(output(",
+				"          empid as string,",
+				"          EmployeeName as string,",
+				"          Dep as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> NormalEmployee",
+				"Allemplo derive(Dummy = 'Dummy') ~> derivedColumn1",
+				"derivedColumn1 aggregate(groupBy(Dummy),",
+				"     Max = max(empid)) ~> aggregate1",
+				"aggregate1, NormalEmployee join(1==1,",
+				"     joinType:'cross',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 keyGenerate(output(ID as long),",
+				"     startAt: 1L,",
+				"     stepValue: 1L) ~> surrogateKey1"
+			]
+		}
+	}
+}

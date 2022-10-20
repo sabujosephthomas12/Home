@@ -1,0 +1,37 @@
+{
+	"name": "NormalEmployees",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HomeBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Normal Employee.csv",
+				"folderPath": "NormalEmployee",
+				"container": "adfdemo"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "empid",
+				"type": "String"
+			},
+			{
+				"name": "EmployeeName",
+				"type": "String"
+			},
+			{
+				"name": "Dep",
+				"type": "String"
+			}
+		]
+	}
+}
