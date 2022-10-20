@@ -1,0 +1,41 @@
+{
+	"name": "RunningTotal",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HomeBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "EmployeeData.csv",
+				"folderPath": "NormalEmployee",
+				"container": "adfdemo"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "empid",
+				"type": "String"
+			},
+			{
+				"name": "EmployeeName",
+				"type": "String"
+			},
+			{
+				"name": "Dep",
+				"type": "String"
+			},
+			{
+				"name": "Amount",
+				"type": "String"
+			}
+		]
+	}
+}
