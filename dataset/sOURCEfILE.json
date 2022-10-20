@@ -1,0 +1,49 @@
+{
+	"name": "sOURCEfILE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HomeBlobStorage",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"fILEnAME": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().fILEnAME",
+					"type": "Expression"
+				},
+				"folderPath": "Sales Univer",
+				"container": "adfdemo"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "SalesDate",
+				"type": "String"
+			},
+			{
+				"name": "SalesItem",
+				"type": "String"
+			},
+			{
+				"name": "Country",
+				"type": "String"
+			},
+			{
+				"name": "Quantity",
+				"type": "String"
+			}
+		]
+	}
+}
