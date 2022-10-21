@@ -1,0 +1,38 @@
+{
+	"name": "dataflow2",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "EmployeeData",
+						"type": "DatasetReference"
+					},
+					"name": "TransferEmployData"
+				}
+			],
+			"sinks": [
+				{
+					"name": "SQLSINCK"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          empid as integer,",
+				"          EmployeeName as string,",
+				"          Dep as string,",
+				"          Salary as decimal(10,0)",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> TransferEmployData",
+				"TransferEmployData sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SQLSINCK"
+			]
+		}
+	}
+}

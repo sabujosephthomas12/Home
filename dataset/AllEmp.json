@@ -5,6 +5,9 @@
 			"referenceName": "HomeBlobStorage",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "OL DS"
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {

@@ -5,6 +5,9 @@
 			"referenceName": "AMCOSQL",
 			"type": "LinkedServiceReference"
 		},
+		"folder": {
+			"name": "OL DS"
+		},
 		"annotations": [],
 		"type": "SqlServerTable",
 		"schema": [

@@ -1,20 +1,17 @@
 {
-	"name": "Department",
+	"name": "EmployeeData",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "HomeBlobStorage",
 			"type": "LinkedServiceReference"
-		},
-		"folder": {
-			"name": "OL DS"
 		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "Department.csv",
-				"folderPath": "CSVSource",
+				"fileName": "EmplyeeData.csv",
+				"folderPath": "Output",
 				"container": "adfdemo"
 			},
 			"columnDelimiter": ",",
@@ -24,11 +21,19 @@
 		},
 		"schema": [
 			{
+				"name": "empid",
+				"type": "String"
+			},
+			{
+				"name": "EmployeeName",
+				"type": "String"
+			},
+			{
 				"name": "Dep",
 				"type": "String"
 			},
 			{
-				"name": "DepName",
+				"name": "Salary",
 				"type": "String"
 			}
 		]

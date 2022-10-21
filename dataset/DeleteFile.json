@@ -10,6 +10,9 @@
 				"type": "string"
 			}
 		},
+		"folder": {
+			"name": "OL DS"
+		},
 		"annotations": [],
 		"type": "Binary",
 		"typeProperties": {
