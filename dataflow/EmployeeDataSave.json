@@ -9,7 +9,7 @@
 						"referenceName": "EmployeeData",
 						"type": "DatasetReference"
 					},
-					"name": "TransferEmployData"
+					"name": "source2"
 				}
 			],
 			"sinks": [
@@ -28,15 +28,15 @@
 			],
 			"scriptLines": [
 				"source(output(",
-				"          empid as integer,",
+				"          empid as string,",
 				"          EmployeeName as string,",
 				"          Dep as string,",
-				"          Salary as decimal(10,0)",
+				"          Salary as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> TransferEmployData",
-				"TransferEmployData alterRow(upsertIf(1==1)) ~> EmployData",
+				"     ignoreNoFilesFound: false) ~> source2",
+				"source2 alterRow(upsertIf(1==1)) ~> EmployData",
 				"EmployData sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     deletable:false,",
