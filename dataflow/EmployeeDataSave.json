@@ -12,7 +12,15 @@
 					"name": "TransferEmployData"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "SQLEMPLOYEETAB",
+						"type": "DatasetReference"
+					},
+					"name": "SQLSINK"
+				}
+			],
 			"transformations": [
 				{
 					"name": "EmployData"
@@ -28,7 +36,23 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> TransferEmployData",
-				"TransferEmployData alterRow(upsertIf(1==1)) ~> EmployData"
+				"TransferEmployData alterRow(upsertIf(1==1)) ~> EmployData",
+				"EmployData sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          empid,",
+				"          EmployeeName,",
+				"          Dep,",
+				"          Salary",
+				"     )) ~> SQLSINK"
 			]
 		}
 	}
