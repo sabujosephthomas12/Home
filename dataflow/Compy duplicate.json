@@ -1,6 +1,9 @@
 {
 	"name": "Compy duplicate",
 	"properties": {
+		"folder": {
+			"name": "OLD"
+		},
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [

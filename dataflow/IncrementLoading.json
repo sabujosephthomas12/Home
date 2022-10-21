@@ -1,6 +1,9 @@
 {
 	"name": "IncrementLoading",
 	"properties": {
+		"folder": {
+			"name": "OLD"
+		},
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [

@@ -1,6 +1,9 @@
 {
 	"name": "dataflow1_copy1",
 	"properties": {
+		"folder": {
+			"name": "OLD"
+		},
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [

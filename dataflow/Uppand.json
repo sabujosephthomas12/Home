@@ -1,6 +1,9 @@
 {
 	"name": "Uppand",
 	"properties": {
+		"folder": {
+			"name": "OLD"
+		},
 		"type": "MappingDataFlow",
 		"typeProperties": {
 			"sources": [
